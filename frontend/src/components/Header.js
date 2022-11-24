@@ -8,7 +8,8 @@ const Header = () => {
     const dispatch = useDispatch();
     let history = useHistory();
 
-
+    const cart = useSelector((state) => state.cart);
+    const { cartItems } = cart;
     const userLogin = useSelector((state) => state.userLogin);
     const {userInfo} = userLogin;
 
@@ -109,6 +110,10 @@ const Header = () => {
                                         <Link to="/login">Login</Link>
                                     </>
                                 )}
+                                <Link to="/cart">
+                                    <i className="fas fa-shopping-bag"></i>
+                                    <span className="badge">{cartItems.length}</span>
+                                </Link>
                             </div>
                         </div>
                     </div>
