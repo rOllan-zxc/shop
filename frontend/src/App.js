@@ -9,6 +9,8 @@ import Register from "./screens/Register.js";
 import NotFound from "./screens/NotFound.js";
 import SingleProduct from "./screens/SingleProduct";
 import CartScreen from "./screens/CartScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import PrivateRouter from "./PrivateRouter";
 
 const App = () => {
     return(
@@ -19,6 +21,7 @@ const App = () => {
                 <Route path="/cart/:id?" component={CartScreen} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
+                <PrivateRouter path="/profile" component={ProfileScreen} />
                 <Route path="*" component={NotFound} />
             </Switch>
         </Router>
