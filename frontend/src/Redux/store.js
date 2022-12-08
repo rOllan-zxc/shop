@@ -1,10 +1,15 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import {userLoginReducer,  userRegisterReducer, userDetailsReducer,} from "./Reducers/userReducers.js";
-import app from "../App";
+import {
+    userLoginReducer,
+    userRegisterReducer,
+    userDetailsReducer,
+    userUpdateProfileReducer
+} from "./Reducers/userReducers.js";
 import {productDetailsReducer, productListReducer} from "./Reducers/ProductReducers";
 import {cartReducer} from "./Reducers/CartReducers";
+import {orderCreateReducer} from "./Reducers/OrderReducers";
 
 const reducer = combineReducers({
     productList : productListReducer,
@@ -13,6 +18,8 @@ const reducer = combineReducers({
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
+    userUpdateProfile: userUpdateProfileReducer,
+    orderCreate: orderCreateReducer,
 });
 
 const cartItemsFromLocalStorage = localStorage.getItem("cartItems")
@@ -23,8 +30,16 @@ const userInfoFromLocalStorage = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
     : null;
 
+// shippingAddress
+const shippingAddressFromLocalStorage = localStorage.getItem("shippingAddress")
+    ? JSON.parse(localStorage.getItem("shippingAddress"))
+    : {};
+
 const initialState = {
-    cart: { cartItems: cartItemsFromLocalStorage },
+    cart: {
+        cartItems: cartItemsFromLocalStorage ,
+        shippingAddress: shippingAddressFromLocalStorage,
+    },
     userLogin: { userInfo: userInfoFromLocalStorage },
 };
 
